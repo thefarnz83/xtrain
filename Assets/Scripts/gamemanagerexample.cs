@@ -6,12 +6,8 @@ using System;
 public class gamemanagerexample : MonoBehaviour 
 {
 	public GameObject tabletInterface;
-	//public string[] imageOff;
 	public int scoreValue;
 	public scoremanagertest scoreAccess; //This is so the question control can have access to the scoremanager.
-	//---------------- Game Final Score Idea ---------------------------
-
-	//----------------- Original Above --------------------
 	[Serializable] // makes this able to be shown in the inspector if all fields are standard types
 	public class QuestionAnswerSet 
 	{
@@ -40,8 +36,7 @@ public class gamemanagerexample : MonoBehaviour
 	{
 		userInputField.text = userInputField.text.ToUpper ();
 	}
-
-
+		
 	public void NextQuestion() 
 	{
 		currentQAIndex++;
@@ -70,6 +65,8 @@ public class gamemanagerexample : MonoBehaviour
 				correct = true;
 				Debug.Log (userAnswer);
 				print ("User answer: '" + userAnswer + "' is correct!");
+				tabletInterface.SetActive (false);
+				scoreAccess.AddScore (scoreValue);
 				break;
 			}
 			//---------------- GameIdea ---------------------------
@@ -78,9 +75,14 @@ public class gamemanagerexample : MonoBehaviour
 			{
 				Debug.Log (userAnswer);
 				print ("User answer: '" + userAnswer + "' is incorrect! The correct answer is: '" + currentQA.answers[0] + "'");
+
+				//---------------------------idea----------------------------------
+
 			}
 		}
-
+		/*////////////////////////////////////////////////////////////////////////////
+		///                           Redundent Below                              ///
+		//////////////////////////////////////////////////////////////////////////////
 
 		if(correct) 
 		{
@@ -90,8 +92,6 @@ public class gamemanagerexample : MonoBehaviour
 			print("Done, Done, Done");
 			//print (userAnswers);
 			//NextQuestion();
-
-
 		}
 		else 
 		{
@@ -99,7 +99,7 @@ public class gamemanagerexample : MonoBehaviour
 			print("User answers are incorrect");
 			//print (userAnswers);
 
-		}
+		}*/
 	}
 
 	public void SetQuestion(int index)
