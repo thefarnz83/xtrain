@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
 
-public class gamemanagerexample : MonoBehaviour 
+public class gamemanagerscript : MonoBehaviour 
 {
 	public GameObject tabletInterface;
 	public int scoreValue;
@@ -74,7 +74,7 @@ public class gamemanagerexample : MonoBehaviour
 			else 
 			{
 				Debug.Log (userAnswer);
-				print ("User answer: '" + userAnswer + "' is incorrect! The correct answer is: '" + currentQA.answers[0] + "'");
+				print ("User answer: '" + userAnswer + "' is incorrect! The correct answer is: '" + currentQA.answers[0] + "," + currentQA.answers[1] + "'");
 
 				//---------------------------idea----------------------------------
 
