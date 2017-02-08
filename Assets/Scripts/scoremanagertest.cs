@@ -6,13 +6,9 @@ public class scoremanagertest : MonoBehaviour
 {
 	public Text scoreText; //Score text control on camera 1.
 	public int score;
-	//public Text quizEndText;
-
-	//---------------- Game Over Idea ---------------------------
-
-
-
-
+	public int buttonCount;
+	public gamemanagerscript managerAccess; //Allows access to the game manager script.
+	public Text quizEndText;
 	public Text congratulationsText;
 	public Image blur;
 
@@ -23,13 +19,20 @@ public class scoremanagertest : MonoBehaviour
 		score = 0;
 		UpdateScore ();
 		congratulationsText.text = "";
-		//quizEndText.enabled = false;
+		quizEndText.text = "";
 	}
 
 	public void AddScore (int newScoreValue)
 	{
 		score += newScoreValue;
 		UpdateScore ();
+	}
+
+	public void AddButtonCount (int newButtonCount)
+	{
+		buttonCount += newButtonCount;
+		print ("button count is now " + newButtonCount);
+		UpdateButtonCount ();
 	}
 
 	public void MinusScore (int newScoreValue)
@@ -41,27 +44,20 @@ public class scoremanagertest : MonoBehaviour
 	void UpdateScore ()
 	{
 		scoreText.text = "Score: " + score + " /15";
+	}
 
-		/*if (score >= 15) //Score 15 or more, you pass.
+	void UpdateButtonCount ()
+	{
+		if (buttonCount>= 15) 
 		{
-			quizEndText.enabled = true;
-			quizEndText.text = "Final score is: " + score + ". Congratulations! Press Escape";
-			Debug.Log ("End Game Score Display");
-		}*/
-
-		if (score >= 15) 
-		{
-			//Debug.Log ("score is less then 1");
 			blur.enabled = true;
 			congratulationsText.enabled = true;
 			congratulationsText.text = "Game Over!";
-	
+			managerAccess.answerresulttext.enabled = false;
+			quizEndText.enabled = true;
+			quizEndText.text = "Congratulations! This estimate is complete. Press Escape.";
+			Debug.Log ("End Game Score Display");
+		
 		}
 	}
-
-	//---------------- Game Over Idea ---------------------------
-	/*public void TheEnd ()
-	{
-		
-	}*/
 }

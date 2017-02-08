@@ -7,7 +7,9 @@ public class gamemanagerscript : MonoBehaviour
 {
 	public GameObject tabletInterface;
 	public int scoreValue;
+	public int buttonCount;
 	public scoremanagertest scoreAccess; //This is so the question control can have access to the scoremanager.
+	public Text answerresulttext; //This displays after every answer input informing the user of right or wrong answer.
 	[Serializable] // makes this able to be shown in the inspector if all fields are standard types
 	public class QuestionAnswerSet 
 	{
@@ -30,11 +32,16 @@ public class gamemanagerscript : MonoBehaviour
 		{
 			currentQA = questionAnswerList[0];
 		}
+
+		answerresulttext.text = "";
 	}
 
 	void Update ()
 	{
 		userInputField.text = userInputField.text.ToUpper ();
+
+		if (Input.GetKey ("escape"))
+			Application.Quit ();
 	}
 		
 	public void NextQuestion() 
@@ -65,8 +72,10 @@ public class gamemanagerscript : MonoBehaviour
 				correct = true;
 				Debug.Log (userAnswer);
 				print ("User answer: '" + userAnswer + "' is correct!");
+				answerresulttext.text = "'" + userAnswer + "' is correct!";
 				tabletInterface.SetActive (false);
 				scoreAccess.AddScore (scoreValue);
+				scoreAccess.AddButtonCount (buttonCount);
 				break;
 			}
 			//---------------- GameIdea ---------------------------
@@ -74,12 +83,16 @@ public class gamemanagerscript : MonoBehaviour
 			else 
 			{
 				Debug.Log (userAnswer);
-				print ("User answer: '" + userAnswer + "' is incorrect! The correct answer is: '" + currentQA.answers[0] + "," + currentQA.answers[1] + "'");
+				answerresulttext.text = "'" + userAnswer + "' is incorrect! The correct answer is: '" + currentQA.answers [0] + "'";
+				//tabletInterface.SetActive (false);
+				//scoreAccess.AddButtonCount (buttonCount);
+				print ("User answer: '" + userAnswer + "' is incorrect! The correct answer is: '" + currentQA.answers[0] + /*"," + currentQA.answers[1] + */"'");
 
 				//---------------------------idea----------------------------------
 
 			}
 		}
+
 		/*////////////////////////////////////////////////////////////////////////////
 		///                           Redundent Below                              ///
 		//////////////////////////////////////////////////////////////////////////////
