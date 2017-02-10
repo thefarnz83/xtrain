@@ -5,10 +5,11 @@ using System;
 
 public class gamemanagerscript : MonoBehaviour 
 {
+	public scoremanagertest scoreAccess; //This is so the question control can have access to the scoremanager.
+	public GameObject highLights;
 	public GameObject tabletInterface;
 	public int scoreValue;
 	public int buttonCount;
-	public scoremanagertest scoreAccess; //This is so the question control can have access to the scoremanager.
 	public Text answerresulttext; //This displays after every answer input informing the user of right or wrong answer.
 	[Serializable] // makes this able to be shown in the inspector if all fields are standard types
 	public class QuestionAnswerSet 
@@ -21,7 +22,7 @@ public class gamemanagerscript : MonoBehaviour
 	// configured in the Inspector
 	public List<QuestionAnswerSet> questionAnswerList; // list of question-to-answer sets
 	public InputField userInputField; // the input field the user will type in
-
+	public InputField userInputField2;
 	private int currentQAIndex; // index of the current question-to-answer set
 	private QuestionAnswerSet currentQA; // the current question-to-answer set
 
@@ -39,6 +40,7 @@ public class gamemanagerscript : MonoBehaviour
 	void Update ()
 	{
 		userInputField.text = userInputField.text.ToUpper ();
+		userInputField2.text = userInputField2.text.ToUpper ();
 
 		if (Input.GetKey ("escape"))
 			Application.Quit ();
@@ -60,8 +62,7 @@ public class gamemanagerscript : MonoBehaviour
 
 	public void Submit() 
 	{
-		string[] userAnswers = userInputField.text.Split(',');
-
+		string[] userAnswers = (userInputField.text + " " + userInputField2.text).Split(',');
 		bool correct = false;
 
 		// if any of their answers matches one in the question/answer set, it's correct
@@ -76,9 +77,9 @@ public class gamemanagerscript : MonoBehaviour
 				tabletInterface.SetActive (false);
 				scoreAccess.AddScore (scoreValue);
 				scoreAccess.AddButtonCount (buttonCount);
+				print (highLights.activeInHierarchy);
 				break;
 			}
-			//---------------- GameIdea ---------------------------
 
 			else 
 			{
@@ -87,32 +88,8 @@ public class gamemanagerscript : MonoBehaviour
 				//tabletInterface.SetActive (false);
 				//scoreAccess.AddButtonCount (buttonCount);
 				print ("User answer: '" + userAnswer + "' is incorrect! The correct answer is: '" + currentQA.answers[0] + /*"," + currentQA.answers[1] + */"'");
-
-				//---------------------------idea----------------------------------
-
 			}
 		}
-
-		/*////////////////////////////////////////////////////////////////////////////
-		///                           Redundent Below                              ///
-		//////////////////////////////////////////////////////////////////////////////
-
-		if(correct) 
-		{
-			// do stuff
-			tabletInterface.SetActive (false);
-			scoreAccess.AddScore (scoreValue);
-			print("Done, Done, Done");
-			//print (userAnswers);
-			//NextQuestion();
-		}
-		else 
-		{
-			// do other stuff
-			print("User answers are incorrect");
-			//print (userAnswers);
-
-		}*/
 	}
 
 	public void SetQuestion(int index)
@@ -120,8 +97,6 @@ public class gamemanagerscript : MonoBehaviour
 		currentQAIndex = index;
 		currentQA = questionAnswerList[currentQAIndex];
 	}
-
-	//---------------- Idea ---------------------------
 
 	public void ActivateSystem ()
 	{
