@@ -6,7 +6,7 @@ using System;
 public class gamemanagerscript : MonoBehaviour 
 {
 	public scoremanagertest scoreAccess; //This is so the question control can have access to the scoremanager.
-	public GameObject highLights;
+	public GameObject[] highlights; //Puts the highlight game objects into a list in the inspector.
 	public GameObject tabletInterface;
 	public int scoreValue;
 	public int buttonCount;
@@ -63,21 +63,22 @@ public class gamemanagerscript : MonoBehaviour
 	public void Submit() 
 	{
 		string[] userAnswers = (userInputField.text + " " + userInputField2.text).Split(',');
-		bool correct = false;
+		//bool correct = false;
 
 		// if any of their answers matches one in the question/answer set, it's correct
 		foreach(string userAnswer in userAnswers) 
 		{
 			if (currentQA.answers.Contains (userAnswer)) 
 			{
-				correct = true;
-				Debug.Log (userAnswer);
-				print ("User answer: '" + userAnswer + "' is correct!");
-				answerresulttext.text = "'" + userAnswer + "' is correct!";
+				//correct = true;
+				answerresulttext.text = "'" + userAnswer +			 "' is correct!"; //Displays results on screen for user.
+				userInputField.text = ""; //Sets userinput to empty.
+				userInputField2.text = ""; //Sets userinput to empty.
 				tabletInterface.SetActive (false);
 				scoreAccess.AddScore (scoreValue);
 				scoreAccess.AddButtonCount (buttonCount);
-				print (highLights.activeInHierarchy);
+				for (int i = 0; i < highlights.Length; i++) //For loop check the highlight list and sets any active to inactive.
+					highlights [i].SetActive (false);
 				break;
 			}
 
