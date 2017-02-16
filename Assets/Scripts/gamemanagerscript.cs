@@ -6,23 +6,27 @@ using System;
 public class gamemanagerscript : MonoBehaviour 
 {
 	public scoremanagertest scoreAccess; //This is so the question control can have access to the scoremanager.
-	public GameObject[] highlights; //Puts the highlight game objects into a list in the inspector.
+
 	public GameObject tabletInterface;
+	public Button roomButton;
 	public int scoreValue;
 	public int buttonCount;
 	public Text answerresulttext; //This displays after every answer input informing the user of right or wrong answer.
+	public InputField userInputField; // the input field the user will type in
+	public InputField userInputField2;
 	[Serializable] // makes this able to be shown in the inspector if all fields are standard types
 	public class QuestionAnswerSet 
 	{
 		// this class defines one question, and a list of answers
 		public string question;
 		public List<string> answers;
+		//------------------gameidea----------------------//
+		public GameObject[] hideAnswers;
 	}
 
 	// configured in the Inspector
+	public GameObject[] highlights; //Puts the highlight game objects into a list in the inspector.
 	public List<QuestionAnswerSet> questionAnswerList; // list of question-to-answer sets
-	public InputField userInputField; // the input field the user will type in
-	public InputField userInputField2;
 	private int currentQAIndex; // index of the current question-to-answer set
 	private QuestionAnswerSet currentQA; // the current question-to-answer set
 
@@ -70,6 +74,7 @@ public class gamemanagerscript : MonoBehaviour
 		{
 			if (currentQA.answers.Contains (userAnswer)) 
 			{
+				//-----------------------gameidea------------------------//
 				//correct = true;
 				answerresulttext.text = "'" + userAnswer +			 "' is correct!"; //Displays results on screen for user.
 				userInputField.text = ""; //Sets userinput to empty.
@@ -77,8 +82,10 @@ public class gamemanagerscript : MonoBehaviour
 				tabletInterface.SetActive (false);
 				scoreAccess.AddScore (scoreValue);
 				scoreAccess.AddButtonCount (buttonCount);
-				for (int i = 0; i < highlights.Length; i++) //For loop check the highlight list and sets any active to inactive.
+				for (int i = 0; i < highlights.Length; i++) //For loop checks the highlight list and sets any active to inactive.
 					highlights [i].SetActive (false);
+				roomButton.interactable = true;
+				
 				break;
 			}
 

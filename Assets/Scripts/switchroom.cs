@@ -10,6 +10,7 @@ public class switchroom : MonoBehaviour
 	public GameObject imgKitchen, imgNook;
 	public GameObject buttonKitchen, buttonNook;
 	public GameObject kitchenObjectButtons, nookObjectButtons;
+	public GameObject imgDeskKitchen, imgDeskNook;
 
 	void Start ()
 	{
@@ -17,6 +18,8 @@ public class switchroom : MonoBehaviour
 		transform.eulerAngles = new Vector3(0, yRotationStart, 0);
 		imgKitchen.SetActive (true);
 		imgNook.SetActive (false);
+		imgDeskKitchen.SetActive (true);
+		imgDeskNook.SetActive (false);
 		buttonKitchen.SetActive (false);
 		buttonNook.SetActive (true);
 		kitchenObjectButtons.SetActive (true);
@@ -32,6 +35,8 @@ public class switchroom : MonoBehaviour
 		{
 			imgKitchen.SetActive (true);
 			imgNook.SetActive (false);
+			imgDeskKitchen.SetActive (true);
+			imgDeskNook.SetActive (false);
 			buttonKitchen.SetActive (false);
 			buttonNook.SetActive (true);
 			kitchenObjectButtons.SetActive (true);
@@ -49,6 +54,8 @@ public class switchroom : MonoBehaviour
 		{
 			imgNook.SetActive (true);
 			imgKitchen.SetActive (false);
+			imgDeskNook.SetActive (true);
+			imgDeskKitchen.SetActive (false);
 			buttonNook.SetActive (false);
 			buttonKitchen.SetActive (true);
 			nookObjectButtons.SetActive (true);

@@ -9,6 +9,8 @@ public class activatesub : MonoBehaviour
 	public Image one;
 	public Image two;
 	public Button disableWhenDone;
+
+
 	//--------------------- image info ----------------------
 	public GameObject turnThisOff; //dont need this here. Added in deactivate script as Gameobject imageOff
 
