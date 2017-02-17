@@ -8,17 +8,18 @@ public class activatesub : MonoBehaviour
 	public Button setInteractableOne, setsetInteractableTwo;
 	public Image one;
 	public Image two;
-	public Button disableWhenDone;
-
-
-	//--------------------- image info ----------------------
-	public GameObject turnThisOff; //dont need this here. Added in deactivate script as Gameobject imageOff
+	public Button disableWhenClicked;
+	public Button disableWhenClicked2;
+	public Button disableWhenClicked3;
 
 	public void Activate ()
 	{
 		imageOn.SetActive (true);
 		setInteractableOne.interactable = true;
 		setsetInteractableTwo.interactable = true;
+		disableWhenClicked.interactable = false;
+		disableWhenClicked2.interactable = false;
+		disableWhenClicked3.interactable = false;
 	}
 
 	void Update ()
@@ -28,8 +29,6 @@ public class activatesub : MonoBehaviour
 			imageOn.SetActive (false);
 			one.enabled = false;
 			two.enabled = false;
-			//turnThisOff.SetActive (false); //dont need this here. Added in deactivate script as Gameobject imageOff
-			disableWhenDone.interactable = false;
 		}
 	}
 }

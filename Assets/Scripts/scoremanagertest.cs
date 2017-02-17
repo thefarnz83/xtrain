@@ -48,7 +48,7 @@ public class scoremanagertest : MonoBehaviour
 
 	void UpdateButtonCount ()
 	{
-		if (buttonCount>= 12) 
+		if (buttonCount>= 15) 
 		{
 			blur.enabled = true;
 			congratulationsText.enabled = true;

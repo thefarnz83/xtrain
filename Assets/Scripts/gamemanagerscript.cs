@@ -20,8 +20,7 @@ public class gamemanagerscript : MonoBehaviour
 		// this class defines one question, and a list of answers
 		public string question;
 		public List<string> answers;
-		//------------------gameidea----------------------//
-		public GameObject[] hideAnswers;
+		public GameObject hideAnswer;
 	}
 
 	// configured in the Inspector
@@ -67,25 +66,22 @@ public class gamemanagerscript : MonoBehaviour
 	public void Submit() 
 	{
 		string[] userAnswers = (userInputField.text + " " + userInputField2.text).Split(',');
-		//bool correct = false;
 
 		// if any of their answers matches one in the question/answer set, it's correct
 		foreach(string userAnswer in userAnswers) 
 		{
 			if (currentQA.answers.Contains (userAnswer)) 
 			{
-				//-----------------------gameidea------------------------//
-				//correct = true;
-				answerresulttext.text = "'" + userAnswer +			 "' is correct!"; //Displays results on screen for user.
+				answerresulttext.text = "'" + userAnswer + "' is correct!"; //Displays results on screen for user.
 				userInputField.text = ""; //Sets userinput to empty.
 				userInputField2.text = ""; //Sets userinput to empty.
 				tabletInterface.SetActive (false);
 				scoreAccess.AddScore (scoreValue);
 				scoreAccess.AddButtonCount (buttonCount);
+				roomButton.interactable = true;
+				currentQA.hideAnswer.SetActive (false);
 				for (int i = 0; i < highlights.Length; i++) //For loop checks the highlight list and sets any active to inactive.
 					highlights [i].SetActive (false);
-				roomButton.interactable = true;
-				
 				break;
 			}
 

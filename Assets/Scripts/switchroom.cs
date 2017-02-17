@@ -11,6 +11,7 @@ public class switchroom : MonoBehaviour
 	public GameObject buttonKitchen, buttonNook;
 	public GameObject kitchenObjectButtons, nookObjectButtons;
 	public GameObject imgDeskKitchen, imgDeskNook;
+	public GameObject hideAnswersKitchen, hideAnswersNook;
 
 	void Start ()
 	{
@@ -24,6 +25,7 @@ public class switchroom : MonoBehaviour
 		buttonNook.SetActive (true);
 		kitchenObjectButtons.SetActive (true);
 		nookObjectButtons.SetActive (false);
+		hideAnswersNook.SetActive (false);
 	}
 
 	//shows the kicthen and turns on and off items not needed in the kitchen.
@@ -41,6 +43,8 @@ public class switchroom : MonoBehaviour
 			buttonNook.SetActive (true);
 			kitchenObjectButtons.SetActive (true);
 			nookObjectButtons.SetActive (false);
+			hideAnswersKitchen.SetActive (true);
+			hideAnswersNook.SetActive (false);
 		}
 	}
 
@@ -60,6 +64,8 @@ public class switchroom : MonoBehaviour
 			buttonKitchen.SetActive (true);
 			nookObjectButtons.SetActive (true);
 			kitchenObjectButtons.SetActive (false);
+			hideAnswersKitchen.SetActive (false);
+			hideAnswersNook.SetActive (true);
 		}
 	}
 }
