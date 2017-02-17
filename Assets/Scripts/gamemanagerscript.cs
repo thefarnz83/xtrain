@@ -9,6 +9,8 @@ public class gamemanagerscript : MonoBehaviour
 
 	public GameObject tabletInterface;
 	public Button roomButton;
+	public GameObject startButton;
+	public GameObject blurStart;
 	public int scoreValue;
 	public int buttonCount;
 	public Text answerresulttext; //This displays after every answer input informing the user of right or wrong answer.
@@ -38,6 +40,9 @@ public class gamemanagerscript : MonoBehaviour
 		}
 
 		answerresulttext.text = "";
+
+		startButton.SetActive (true);
+		blurStart.SetActive (true);
 	}
 
 	void Update ()
@@ -105,5 +110,11 @@ public class gamemanagerscript : MonoBehaviour
 	public void ActivateSystem ()
 	{
 		tabletInterface.SetActive (true);
+	}
+
+	public void GoGoBananas ()
+	{
+		startButton.SetActive (false);
+		blurStart.SetActive (false);
 	}
 }

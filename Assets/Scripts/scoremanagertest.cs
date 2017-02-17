@@ -10,12 +10,13 @@ public class scoremanagertest : MonoBehaviour
 	public gamemanagerscript managerAccess; //Allows access to the game manager script.
 	public Text quizEndText;
 	public Text congratulationsText;
-	public Image blur;
+	public Image blurEnd;
+
 
 	void Start ()
 	{
 		congratulationsText.enabled = false;
-		blur.enabled = false;
+		blurEnd.enabled = false;
 		score = 0;
 		UpdateScore ();
 		congratulationsText.text = "";
@@ -50,7 +51,7 @@ public class scoremanagertest : MonoBehaviour
 	{
 		if (buttonCount>= 15) 
 		{
-			blur.enabled = true;
+			blurEnd.enabled = true;
 			congratulationsText.enabled = true;
 			congratulationsText.text = "Game Over!";
 			managerAccess.answerresulttext.enabled = false;
