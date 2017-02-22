@@ -11,9 +11,11 @@ public class gamemanagerscript : MonoBehaviour
 	public Button roomButton;
 	public GameObject startButton;
 	public GameObject blurStart;
+	public GameObject green, red;
 	public int scoreValue;
 	public int buttonCount;
-	public Text answerresulttext; //This displays after every answer input informing the user of right or wrong answer.
+	public Text correctAnswerresulttext; //This displays after every answer input informing the user of right or wrong answer.
+	public Text wrongAnswerresulttext;
 	public InputField userInputField; // the input field the user will type in
 	public InputField userInputField2;
 	[Serializable] // makes this able to be shown in the inspector if all fields are standard types
@@ -39,10 +41,12 @@ public class gamemanagerscript : MonoBehaviour
 			currentQA = questionAnswerList[0];
 		}
 
-		answerresulttext.text = "";
-
+		correctAnswerresulttext.text = "";
+		wrongAnswerresulttext.text = "";
 		startButton.SetActive (true);
 		blurStart.SetActive (true);
+		green.SetActive (false);
+		red.SetActive (false);
 	}
 
 	void Update ()
@@ -77,7 +81,10 @@ public class gamemanagerscript : MonoBehaviour
 		{
 			if (currentQA.answers.Contains (userAnswer)) 
 			{
-				answerresulttext.text = "'" + userAnswer + "' is correct!"; //Displays results on screen for user.
+				correctAnswerresulttext.text = "" + userAnswer + " is correct!"; //Displays results on screen for user.
+				green.SetActive (true);
+				red.SetActive (false);
+				wrongAnswerresulttext.text = "";
 				userInputField.text = ""; //Sets userinput to empty.
 				userInputField2.text = ""; //Sets userinput to empty.
 				tabletInterface.SetActive (false);
@@ -93,7 +100,8 @@ public class gamemanagerscript : MonoBehaviour
 			else 
 			{
 				Debug.Log (userAnswer);
-				answerresulttext.text = "'" + userAnswer + "' is incorrect! The correct answer is: '" + currentQA.answers [0] + "'";
+				wrongAnswerresulttext.text = "" + userAnswer + " is incorrect! The correct answer is: " + currentQA.answers [0] + "";
+				red.SetActive (true);
 				//tabletInterface.SetActive (false);
 				//scoreAccess.AddButtonCount (buttonCount);
 				print ("User answer: '" + userAnswer + "' is incorrect! The correct answer is: '" + currentQA.answers[0] + /*"," + currentQA.answers[1] + */"'");
@@ -110,6 +118,10 @@ public class gamemanagerscript : MonoBehaviour
 	public void ActivateSystem ()
 	{
 		tabletInterface.SetActive (true);
+		//userInputField.interactable = true;
+		//userInputField.interactable = true;
+		correctAnswerresulttext.text = "";
+		green.SetActive (false);
 	}
 
 	public void GoGoBananas ()

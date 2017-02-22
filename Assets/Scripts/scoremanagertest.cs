@@ -54,7 +54,7 @@ public class scoremanagertest : MonoBehaviour
 			blurEnd.enabled = true;
 			congratulationsText.enabled = true;
 			congratulationsText.text = "Game Over!";
-			managerAccess.answerresulttext.enabled = false;
+			managerAccess.correctAnswerresulttext.enabled = false;
 			quizEndText.enabled = true;
 			quizEndText.text = "Congratulations! This estimate is complete. Press Escape.";
 			Debug.Log ("End Game Score Display");
