@@ -58,7 +58,6 @@ public class scoremanagertest : MonoBehaviour
 			quizEndText.enabled = true;
 			quizEndText.text = "Congratulations! This estimate is complete. Press Escape.";
 			Debug.Log ("End Game Score Display");
-		
 		}
 	}
 }
